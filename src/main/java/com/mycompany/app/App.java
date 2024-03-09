@@ -10,6 +10,16 @@ public class App
                 (mode != 'w' && mode != 'b' && mode !='a'))
             return "Please enter valid inputs!";
 
+        for (Integer i : class1){
+            if (i < 0 || i > 100)
+                return "Please enter valid inputs!";
+        }
+
+        for (Integer i : class2){
+            if (i < 0 || i > 100)
+                return "Please enter valid inputs!";
+        }
+
         String result = "";
 
         if (mode == 'w'){

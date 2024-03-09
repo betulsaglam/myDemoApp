@@ -117,4 +117,22 @@ public class AppTest
 
         assertEquals(expected, App.findStats(null, null, 'b', false));
     }
+
+    public void testBelowMinimum(){
+        Integer[] arr1 = {-32, 23, 65, 39, 96, 54};
+        Integer[] arr2 = {23, 87, 54, 82, 73, 39};
+
+        String expected = "Please enter valid inputs!";
+
+        assertEquals(expected, App.findStats(arr1, arr2, 'a', false));
+    }
+
+    public void testAboveMaximum(){
+        Integer[] arr1 = {12, 84, 28, 11, 43, 65, 84, 61};
+        Integer[] arr2 = {42, 66, 48, 90, 76, 75, 46, 110, 89};
+
+        String expected = "Please enter valid inputs!";
+
+        assertEquals(expected, App.findStats(arr1, arr2, 'a', false));
+    }
 }
