@@ -46,7 +46,7 @@ public class App {
             }
 
             if(ignore && (min1 == Integer.MAX_VALUE || min2 == Integer.MAX_VALUE)){
-                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+                result = "There's nothing to compare if you tell me to ignore all 0's :[";
             }
             else{
                 result = "Worst grade for the first class is " + min1 + "." +
@@ -74,7 +74,7 @@ public class App {
             }
 
             if (ignore && (max1 == Integer.MIN_VALUE || max2 == Integer.MIN_VALUE)){
-                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+                result = "There's nothing to compare if you tell me to ignore all 0's :[";
             }
             else {
                 result = "Best grade for the first class is " + max1 + "." +
@@ -115,7 +115,7 @@ public class App {
             }
 
             if (allZeros1 || allZeros2){
-                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+                result = "There's nothing to compare if you tell me to ignore all 0's :[";
             }
             else {
                 avg1 = (count1 == 0) ? 0 : avg1 / count1;
@@ -140,7 +140,7 @@ public class App {
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
 
-        get("/", (req, res) -> "Let's Compute :]");
+        get("/", (req, res) -> "Let's Compare Grades :] please add /compute at the end of the url");
 
         post("/compute", (req, res) -> {
 
