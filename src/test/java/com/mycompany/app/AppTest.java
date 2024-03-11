@@ -116,7 +116,7 @@ public class AppTest
         Integer[] arr1 = {0, 0, 0, 0, 0, 0};
         Integer[] arr2 = {12, 0, 32, 86, 65, 20, 0};
 
-        String expected = "There's nothing to compare if you tell me to ignore all 0's :(";
+        String expected = "There's nothing to compare if you tell me to ignore all 0's :[";
 
         assertEquals(expected, App.findStats(arr1, arr2, 'a', true));
     }
