@@ -158,7 +158,7 @@ public class App {
         get("/compute",
                 (rq, rs) -> {
                     Map map = new HashMap();
-                    map.put("result", "please fill in the blanks!");
+                    map.put("result", "not compared yet!");
                     return new ModelAndView(map, "compute.mustache");
                 },
                 new MustacheTemplateEngine());
