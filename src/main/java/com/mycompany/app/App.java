@@ -44,15 +44,22 @@ public class App {
                 if (!(ignore && integer == 0))
                     min2 = Math.min(min2, integer);
             }
-            result = "Worst grade for the first class is " + min1 + "." +
-                    "\nWorst grade for the second class is " + min2 + ".";
 
-            if (min1 > min2) {
-                result += "\nFirst class is better than the second class for worst grade";
-            } else if (min1 == min2)
-                result += "\nBoth classes have the same worst grade";
-            else
-                result += "\nSecond class is better than the first class for worst grade";
+            if(ignore && (min1 == Integer.MAX_VALUE || min2 == Integer.MAX_VALUE)){
+                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+            }
+            else{
+                result = "Worst grade for the first class is " + min1 + "." +
+                        "\nWorst grade for the second class is " + min2 + ".";
+
+                if (min1 > min2) {
+                    result += "\nFirst class is better than the second class for worst grade";
+                } else if (min1 == min2)
+                    result += "\nBoth classes have the same worst grade";
+                else
+                    result += "\nSecond class is better than the first class for worst grade";
+            }
+
         } else if (mode == 'b') {
 
             int max1 = Integer.MIN_VALUE, max2 = Integer.MIN_VALUE;
@@ -65,20 +72,27 @@ public class App {
                 if (!(ignore && i == 0))
                     max2 = Math.max(max2, i);
             }
-            result = "Best grade for the first class is " + max1 + "." +
-                    "\nBest grade for the second class is " + max2 + ".";
 
-            if (max1 > max2) {
-                result += "\nFirst class is better than the second class for best grade";
-            } else if (max1 == max2)
-                result += "\nBoth classes have the same best grade";
-            else
-                result += "\nSecond class is better than the first class for best grade";
+            if (ignore && (max1 == Integer.MIN_VALUE || max2 == Integer.MIN_VALUE)){
+                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+            }
+            else {
+                result = "Best grade for the first class is " + max1 + "." +
+                        "\nBest grade for the second class is " + max2 + ".";
+
+                if (max1 > max2) {
+                    result += "\nFirst class is better than the second class for best grade";
+                } else if (max1 == max2)
+                    result += "\nBoth classes have the same best grade";
+                else
+                    result += "\nSecond class is better than the first class for best grade";
+            }
 
         } else if (mode == 'a') {
 
             double avg1 = 0, avg2 = 0;
             int count1 = 0, count2 = 0;
+            boolean allZeros1 = true, allZeros2 = true;
 
             DecimalFormatSymbols symbols = new DecimalFormatSymbols();
             symbols.setDecimalSeparator('.');
@@ -88,25 +102,36 @@ public class App {
                 avg1 += i;
                 if (!(ignore && i == 0))
                     count1++;
+                if (i != 0)
+                    allZeros1 = false;
             }
+
             for (Integer i : class2) {
                 avg2 += i;
                 if (!(ignore && i == 0))
                     count2++;
+                if (i != 0)
+                    allZeros2 = false;
             }
 
-            avg1 = (count1 == 0) ? 0 : avg1 / count1;
-            avg2 = (count2 == 0) ? 0 : avg2 / count2;
+            if (allZeros1 || allZeros2){
+                result = "There's nothing to compare if you tell me to ignore all 0's :(";
+            }
+            else {
+                avg1 = (count1 == 0) ? 0 : avg1 / count1;
+                avg2 = (count2 == 0) ? 0 : avg2 / count2;
 
-            result = "Average grade for the first class is " + df.format(avg1) + "." +
-                    "\nAverage grade for the second class is " + df.format(avg2) + ".";
+                result = "Average grade for the first class is " + df.format(avg1) + "." +
+                        "\nAverage grade for the second class is " + df.format(avg2) + ".";
 
-            if (avg1 > avg2) {
-                result += "\nFirst class is better than the second class on average";
-            } else if (avg1 == avg2)
-                result += "\nBoth classes have the same average grade";
-            else
-                result += "\nSecond class is better than the first class on average";
+                if (avg1 > avg2) {
+                    result += "\nFirst class is better than the second class on average";
+                } else if (avg1 == avg2)
+                    result += "\nBoth classes have the same average grade";
+                else
+                    result += "\nSecond class is better than the first class on average";
+            }
+
         }
 
         return result;

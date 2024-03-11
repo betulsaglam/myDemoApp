@@ -112,6 +112,15 @@ public class AppTest
         assertEquals(expected, App.findStats(arr1, arr2, 'a', true));
     }
 
+    public void testIgnoreAllZeros(){
+        Integer[] arr1 = {0, 0, 0, 0, 0, 0};
+        Integer[] arr2 = {12, 0, 32, 86, 65, 20, 0};
+
+        String expected = "There's nothing to compare if you tell me to ignore all 0's :(";
+
+        assertEquals(expected, App.findStats(arr1, arr2, 'a', true));
+    }
+
     public void testNull(){
         String expected = "Please enter valid inputs!";
 
@@ -135,4 +144,5 @@ public class AppTest
 
         assertEquals(expected, App.findStats(arr1, arr2, 'a', false));
     }
+
 }
