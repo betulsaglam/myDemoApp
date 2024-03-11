@@ -1,6 +1,8 @@
 <title>My application</title>
-  <h1><center>Let's Compare Grades</center></h1>
-    {{result}}
+  <h1><center>Let's Compare Grades :-)</center></h1>
+    <center>{{result}}</center>
+
+    <center> To compare grades please enter the grades of each class, enter which comparison mode you want to use and finally enter id 0's should be ignored.</center>
 
   <form action="compute" method="post">
 
@@ -13,7 +15,7 @@
         <center><label for="story">Enter comparison mode (w = worst grade, b = best grade, a = average grade): </label>
         <textarea name="input3" rows="1" cols="30"></textarea></center>
 
-        <center><label for="story">Enter if 0's should be ignored: </label>
+        <center><label for="story">Enter if 0's should be ignored (true/false): </label>
         <textarea name="input4" rows="1" cols="30"></textarea></center>
 
         <br>

@@ -44,8 +44,8 @@ public class App {
                 if (!(ignore && integer == 0))
                     min2 = Math.min(min2, integer);
             }
-            result = "Worst grade for the first class is " + min1 +
-                    "\nWorst grade for the second class is " + min2;
+            result = "Worst grade for the first class is " + min1 + "." +
+                    "\nWorst grade for the second class is " + min2 + ".";
 
             if (min1 > min2) {
                 result += "\nFirst class is better than the second class for worst grade";
@@ -65,8 +65,8 @@ public class App {
                 if (!(ignore && i == 0))
                     max2 = Math.max(max2, i);
             }
-            result = "Best grade for the first class is " + max1 +
-                    "\nBest grade for the second class is " + max2;
+            result = "Best grade for the first class is " + max1 + "." +
+                    "\nBest grade for the second class is " + max2 + ".";
 
             if (max1 > max2) {
                 result += "\nFirst class is better than the second class for best grade";
@@ -98,8 +98,8 @@ public class App {
             avg1 = (count1 == 0) ? 0 : avg1 / count1;
             avg2 = (count2 == 0) ? 0 : avg2 / count2;
 
-            result = "Average grade for the first class is " + df.format(avg1) +
-                    "\nAverage grade for the second class is " + df.format(avg2);
+            result = "Average grade for the first class is " + df.format(avg1) + "." +
+                    "\nAverage grade for the second class is " + df.format(avg2) + ".";
 
             if (avg1 > avg2) {
                 result += "\nFirst class is better than the second class on average";
@@ -118,18 +118,16 @@ public class App {
         get("/", (req, res) -> "Hello, World");
 
         post("/compute", (req, res) -> {
-            //System.out.println(req.queryParams("input1"));
-            //System.out.println(req.queryParams("input2"));
 
             String input1 = req.queryParams("input1");
             Scanner sc1 = new Scanner(input1);
-            sc1.useDelimiter("[;\r\n]+");
+            sc1.useDelimiter("[;\\s]+");
             ArrayList<Integer> inputList = new ArrayList<>();
             while (sc1.hasNext()) {
                 int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
                 inputList.add(value);
             }
-            System.out.println(inputList);
+
             Integer[] inputList1 = new Integer[inputList.size()];
             inputList1 = inputList.toArray(inputList1);
 
@@ -141,15 +139,13 @@ public class App {
                 int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
                 inputList.add(value);
             }
-            System.out.println(inputList);
+
             Integer[] inputList2 = new Integer[inputList.size()];
             inputList2 = inputList.toArray(inputList2);
 
-            String input3 = req.queryParams("input3").replaceAll("\\s", "");
-            char input3AsChar = input3.charAt(0);
+            char input3AsChar = req.queryParams("input3").charAt(0);
 
-            String input4 = req.queryParams("input4").replaceAll("\\s", "");
-            boolean input4AsBoolean = Boolean.parseBoolean(input4);
+            boolean input4AsBoolean = Boolean.parseBoolean(req.queryParams("input4"));
 
             String result = App.findStats(inputList1, inputList2, input3AsChar, input4AsBoolean);
 
@@ -162,7 +158,7 @@ public class App {
         get("/compute",
                 (rq, rs) -> {
                     Map map = new HashMap();
-                    map.put("result", "not computed yet!");
+                    map.put("result", "please fill in the blanks!");
                     return new ModelAndView(map, "compute.mustache");
                 },
                 new MustacheTemplateEngine());
