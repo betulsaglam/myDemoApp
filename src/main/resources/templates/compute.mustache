@@ -1,23 +1,26 @@
 <title>My application</title>
-  <h1><center>Let's Compare Grades :-)</center></h1>
+  <h1><center>Let's Compare Grades :]</center></h1>
     <center>Comparison result: {{result}}</center>
-
+    <br>
     <center> To compare grades please enter the grades of each class, enter which comparison mode you want to use and finally enter id 0's should be ignored.</center>
-
+    <br>
   <form action="compute" method="post">
 
-        <center><label for="story">Enter grades of the first class: </label>
+        <center><label for="story">Enter grades of the first class (0-100): </label>
         <textarea name="input1" rows="10" cols="30"></textarea></center>
+        <br>
 
-        <center><label for="story">Enter grades of the second class: </label>
+        <center><label for="story">Enter grades of the second class (0-100): </label>
         <textarea name="input2" rows="10" cols="30"></textarea></center>
+        <br>
 
         <center><label for="story">Enter comparison mode (w = worst grade, b = best grade, a = average grade): </label>
         <textarea name="input3" rows="1" cols="30"></textarea></center>
+        <br>
 
         <center><label for="story">Enter if 0's should be ignored (true/false): </label>
         <textarea name="input4" rows="1" cols="30"></textarea></center>
-
         <br>
+
         <center><input type="submit"></center>
   </form>
