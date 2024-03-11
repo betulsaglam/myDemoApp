@@ -119,35 +119,42 @@ public class App {
 
         post("/compute", (req, res) -> {
 
-            String input1 = req.queryParams("input1");
-            Scanner sc1 = new Scanner(input1);
-            sc1.useDelimiter("[;\\s]+");
-            ArrayList<Integer> inputList = new ArrayList<>();
-            while (sc1.hasNext()) {
-                int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
-                inputList.add(value);
+            String result = "";
+
+            try{
+                String input1 = req.queryParams("input1");
+                Scanner sc1 = new Scanner(input1);
+                sc1.useDelimiter("[;\\s]+");
+                ArrayList<Integer> inputList = new ArrayList<>();
+                while (sc1.hasNext()) {
+                    int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
+                    inputList.add(value);
+                }
+
+                Integer[] inputList1 = new Integer[inputList.size()];
+                inputList1 = inputList.toArray(inputList1);
+
+                String input2 = req.queryParams("input2");
+                sc1 = new Scanner(input2);
+                sc1.useDelimiter("[;\\s]+");
+                inputList = new ArrayList<>();
+                while (sc1.hasNext()) {
+                    int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
+                    inputList.add(value);
+                }
+
+                Integer[] inputList2 = new Integer[inputList.size()];
+                inputList2 = inputList.toArray(inputList2);
+
+                char input3AsChar = req.queryParams("input3").charAt(0);
+
+                boolean input4AsBoolean = Boolean.parseBoolean(req.queryParams("input4"));
+
+                result = App.findStats(inputList1, inputList2, input3AsChar, input4AsBoolean);
+
+            } catch (Exception e) {
+                result = "Please enter valid inputs!";
             }
-
-            Integer[] inputList1 = new Integer[inputList.size()];
-            inputList1 = inputList.toArray(inputList1);
-
-            String input2 = req.queryParams("input2");
-            sc1 = new Scanner(input2);
-            sc1.useDelimiter("[;\\s]+");
-            inputList = new ArrayList<>();
-            while (sc1.hasNext()) {
-                int value = Integer.parseInt(sc1.next().replaceAll("\\s", ""));
-                inputList.add(value);
-            }
-
-            Integer[] inputList2 = new Integer[inputList.size()];
-            inputList2 = inputList.toArray(inputList2);
-
-            char input3AsChar = req.queryParams("input3").charAt(0);
-
-            boolean input4AsBoolean = Boolean.parseBoolean(req.queryParams("input4"));
-
-            String result = App.findStats(inputList1, inputList2, input3AsChar, input4AsBoolean);
 
             Map map = new HashMap();
             map.put("result", result);
